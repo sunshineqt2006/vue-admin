@@ -1,11 +1,21 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-default/index.css'
+import router from './router'
+import store from './store'
 import App from './App.vue'
 
 Vue.use(ElementUI)
+Vue.config.productionTip = false
+
 
 new Vue({
   el: '#app',
-  render: h => h(App)
+  router,
+  store,
+  template: '<App/>',
+  components: { App }
 })
+
+
+// https://github.com/PanJiaChen/vue-element-admin.git

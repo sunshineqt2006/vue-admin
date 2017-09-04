@@ -1,32 +1,17 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <h1>{{ msg }}</h1>
-    <el-button @click.native="startHacking">Yes!</el-button>
-  </div>
+		<router-view></router-view>
+	</div>
 </template>
 
 <script>
-export default {
-  data () {
-    return {
-      msg: 'Want something new?'
-    }
-  },
-
-  methods: {
-    startHacking () {
-      this.$notify({
-        title: 'Shhh',
-        message: 'Just be patient...',
-        duration: 6000
-      })
-    }
+  export default{
+    name: 'APP'
   }
-}
 </script>
 
-<style>
+<style  lang="less">
+@import './styles/index.less'; // 全局自定义的css样式
 #app {
   font-family: Helvetica, sans-serif;
   text-align: center;
