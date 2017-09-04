@@ -10,7 +10,7 @@ function resolve(dir) {
 
 module.exports = (options = {}) => ({
   entry: {
-    vendor: './src/vendor',
+    vendor: ['vue','element-ui'],
     index: './src/main.js'
   },
   output: {

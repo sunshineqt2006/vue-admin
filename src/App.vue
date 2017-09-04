@@ -11,9 +11,13 @@
 </script>
 
 <style  lang="less">
-@import './styles/index.less'; // 全局自定义的css样式
-#app {
+// 全局自定义的css样式
+body,html{height:100%;padding: 0;margin: 0;}
+#app {height: 100%;
   font-family: Helvetica, sans-serif;
-  text-align: center;
+  text-align: left;
+  >div{
+    height: 100%;
+  }
 }
 </style>
