@@ -19,7 +19,6 @@ export default {
     LoginByUsername({ commit }, loginInfo) {
       return new Promise((resolve, reject) => {
         loginWx(loginInfo).then(response => {
-          console.log('1111',response)
           const data = response.resultData
           commit('SET_USERINFO', data)
           commit('SET_TOKEN', data.token)
@@ -28,6 +27,6 @@ export default {
           reject(error)
         })
       })
-    },
+    }
   }
 }

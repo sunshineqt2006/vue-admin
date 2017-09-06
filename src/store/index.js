@@ -18,7 +18,7 @@ export default new Vuex.Store({
   plugins: [
     createPersistedState({ //长期存储关键数据
       paths:[
-        'user'
+         'user'
       ]
      }),
     createPersistedState({ //会话存储避免刷新丢失数据

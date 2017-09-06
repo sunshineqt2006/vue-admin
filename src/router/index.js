@@ -27,12 +27,10 @@ export const constantRouterMap = [
     noDropdown: true,
     children: [{ path: 'index', component: _('introduction/index'), name: '简述' }]
   },
- 
 ]
 
-store.dispatch('initRouters',constantRouterMap)
-
 export default new Router({
+  scrollBehavior: () => ({ y: 0 }),
   routes: constantRouterMap
 })
 
@@ -42,10 +40,18 @@ export const asyncRouterMap = [
     component: Layout,
     redirect: '/permission/index',
     name: '权限测试',
-    icon: 'quanxian',
-    meta: { role: ['admin'] },
+    icon: 'el-icon-document',
     noDropdown: true,
-    children: [{ path: 'index', component: _('permission/index'), name: '权限测试页', meta: { role: ['admin'] }}]
+   children: [{ path: 'test', component: _('permission/index'), name: '权限测试页'}]
   },
-  { path: '/*', redirect: '/login'}
+  {
+    path: '/theme',
+    component: Layout,
+    redirect: 'theme/index3',
+    name: 'theme',
+    icon: 'el-icon-document',
+    children: [{ path: 'index3', component: _('theme/index3'), name: '换肤3'},
+    { path: 'index2', component: _('theme/index2'), name: '换肤2'}]
+  },
+  { path: '/*', redirect: '/login',hidden: true,}
 ]

@@ -40,9 +40,6 @@ export default {
     routes: {
       type: Array
     }
-  },
-  created() {
-    console.log('routes', this.routes)
   }
 }
 </script>

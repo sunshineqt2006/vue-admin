@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import ElementUI from 'element-ui'
-import 'element-ui/lib/theme-default/index.css'
+import './styles/theme/index.css'
+// import 'element-ui/lib/theme-default/index.css'
 import router from './router'
 import store from './store'
 import App from './App.vue'

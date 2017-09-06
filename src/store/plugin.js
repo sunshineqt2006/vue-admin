@@ -1,6 +1,5 @@
-import  { merge }  from '../util'
 import objectPath from 'object-path'
-
+import {merge} from '../util'
 const reducer = (state, paths) => (
   paths.length === 0 ? state : paths.reduce((substate, path) => {
     objectPath.set(substate, path, objectPath.get(state, path))
@@ -19,14 +18,14 @@ function createPersistedState({
     let _state = getState(key)
     if(_state&&_state.common&&_state.common.version!=store.state.common.version){
       console.log('----localStorage clear-----:current ver:'+store.state.common.version+'--:old ver:'+_state.common.version)
-      window.localStorage.removeItem(key)
+      window.localStorage.clear()
     }else{
       try{
         store.replaceState(
-          merge(store.state,_state)
+           merge(store.state,_state)
         )
       }catch(error){
-        window.localStorage.removeItem(key)
+        window.localStorage.clear()
         console.log(error)
       }
     }
