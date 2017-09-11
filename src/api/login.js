@@ -11,3 +11,8 @@ const _INFO = `${prefix}/userInfo.do`
 export function  loginWx(params) {
   return ApiHttp.post(_LOGIN, qs.stringify(params))
 }
+
+export function  LogOut(params) {
+  console.log('params',params)
+  return ApiHttp.post(_LOGOUt, qs.stringify(params))
+}

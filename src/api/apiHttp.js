@@ -1,19 +1,23 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
-// import { getToken } from '@/utils/auth'
 
 // 创建axios实例
 const service = axios.create({
   baseURL: 'http://precsm.zmaxfilm.com/api/', // api的base_url
-  timeout: 5000                  // 请求超时时间
+  timeout: 5000,                  // 请求超时时间
+  headers: {
+    'content-type': 'application/x-www-form-urlencoded',
+    //  'accept':'application/json; version=1'
+}
 })
 
 // request拦截器
 service.interceptors.request.use(config => {
-  // Do something before request is sent
+ // config.headers.uuId = '11111111111111111111111111'
   if (store.getters.token) {
-    config.headers['token'] = getToken() // 让每个请求携带token--['X-Token']为自定义key 请根据实际情况自行修改
+    console.log('store.getters.uuid',store.getters.userInfo.uuid)
+  //  config.headers['uuid'] = store.getters.userInfo.uuid 
   }
   return config
 }, error => {

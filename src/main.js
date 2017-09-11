@@ -6,10 +6,12 @@ import router from './router'
 import store from './store'
 import App from './App.vue'
 import './permission' // 权限
+import * as util from './util'
+
 
 Vue.use(ElementUI)
 Vue.config.productionTip = false
-
+Vue.prototype.$util = util //工具类
 
 new Vue({
   el: '#app',

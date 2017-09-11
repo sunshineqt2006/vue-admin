@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="less" >
-@import '../../styles/index.less';
+@import '../../styles/var.less';
 .login {
   background: @main-color;
   display: flex;

@@ -20,7 +20,6 @@ function hasPermission(roles, route) {
 function filterAsyncRouter(asyncRouterMap, roles) {
   
   const accessedRouters = asyncRouterMap.filter(route => {
-    console.log('route',roles,route)
     if (hasPermission(roles, route)) {
       if (route.children && route.children.length) {
         route.children = filterAsyncRouter(route.children, roles)
@@ -45,7 +44,6 @@ const permission = {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
       state.routers = constantRouterMap.concat(routers)
-      console.log('state.routers',state.routers)
     },
     SET_ROLES(state,roles){
       state.roles = roles
@@ -60,7 +58,6 @@ const permission = {
       return new Promise(resolve => {
         const { roles } = data
         let accessedRouters
-        console.log('roles',roles.indexOf('admin') > 0)
         if (roles.indexOf('admin') > 0) {
           accessedRouters = asyncRouterMap
         } else {

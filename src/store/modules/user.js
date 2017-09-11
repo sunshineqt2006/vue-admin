@@ -1,20 +1,21 @@
-import {loginWx} from '../../api/login'
+import { loginWx, LogOut } from '../../api/login'
 
 export default {
   namespaced: true,
-  state:{
-    token:'',
-    userInfo:{}
+  state: {
+    token: '',
+    userInfo: {}
   },
-  mutations:{
-    SET_TOKEN(state,token){
+  mutations: {
+    SET_TOKEN(state, token) {
+      console.log('store111111111111',this)
       state.token = token
     },
-    SET_USERINFO(state,userInfo){
+    SET_USERINFO(state, userInfo) {
       state.userInfo = userInfo
     }
   },
-  actions:{
+  actions: {
     // 用户名登录
     LoginByUsername({ commit }, loginInfo) {
       return new Promise((resolve, reject) => {
@@ -22,6 +23,19 @@ export default {
           const data = response.resultData
           commit('SET_USERINFO', data)
           commit('SET_TOKEN', data.token)
+          resolve()
+        }).catch(error => {
+          reject(error)
+        })
+      })
+    },
+    // 登出
+    LogOut({ commit, state }) {
+      
+      return new Promise((resolve, reject) => {
+        LogOut({userId:state.userInfo.id}).then(() => {
+          commit('SET_TOKEN', '')
+          commit('SET_USERINFO', '')
           resolve()
         }).catch(error => {
           reject(error)
