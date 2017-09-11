@@ -2,7 +2,7 @@
   <div class='tabs-view-container'>
     <router-link class="tabs-view" v-for="tag in Array.from(visitedViews)" :to="tag.path" :key="tag.path">
       <span :class="isActive(tag.path)?'primary':''">
-        {{tag.name}}<i @click="closeViewTabs(tag,$event)">×</i>
+        {{tag.name}}<i v-if="isActive(tag.path)" @click="closeViewTabs(tag,$event)">×</i>
       </span>
     </router-link>
   </div>
@@ -67,14 +67,16 @@ export default {
       padding: 0 15px;
       margin-top: 4px;
       i{
-        font-size: 20px;color: #999;margin-left: 5px;display: none;
+        font-size: 20px;color: #999;margin-left: 5px;display: inline-block;
+        &:hover{
+          background:palevioletred;border-radius: 50%;line-height: 13px;color: #fff;
+        }
       }
       &.primary{
         border-top-left-radius: 4px;
       border-top-right-radius: 4px;
       border:1px solid #ddd;
       border-bottom: 1px solid #fff;
-      i{display: inline-block;}
       }
     }
   }

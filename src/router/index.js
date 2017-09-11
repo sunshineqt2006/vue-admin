@@ -3,7 +3,6 @@ import Router from 'vue-router'
 import store from '../store'
 Vue.use(Router)
 import Layout from '../views/layout/layout'
-import test from '../views/test'
 
 const _ = function (modual) {
  return () => System.import(`../views/${modual}`)

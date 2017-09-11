@@ -379,7 +379,7 @@
 
     font-size: 12px;
 
-    color: rgb(31, 47, 61);
+    color: rgb(61, 34, 31);
 }
 
 .el-color-dropdown__btn {
@@ -412,16 +412,16 @@
 
 .el-color-dropdown__btn:hover {
 
-    color: #0092e6;
+    color: #de3031;
 
-    border-color: #0092e6;
+    border-color: #de3031;
 }
 
 .el-color-dropdown__link-btn {
 
     cursor: pointer;
 
-    color: #0092e6;
+    color: #de3031;
 
     text-decoration: none;
 
@@ -432,7 +432,7 @@
 
 .el-color-dropdown__link-btn:hover {
 
-    color: rgb(51, 168, 235);
+    color: rgb(229, 89, 90);
 }
 
 .el-color-picker {
@@ -538,7 +538,7 @@
 
     background-color: #fff;
 
-    border: 1px solid rgb(209, 220, 229);
+    border: 1px solid rgb(229, 211, 209);
 
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .12);
 }
