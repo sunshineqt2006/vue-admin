@@ -8,7 +8,6 @@ export default {
   },
   mutations: {
     SET_TOKEN(state, token) {
-      console.log('store111111111111',this.commit(''))
       state.token = token
     },
     SET_USERINFO(state, userInfo) {

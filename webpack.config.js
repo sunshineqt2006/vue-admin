@@ -4,20 +4,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const url = require('url')
 const publicPath = ''
 
-function resolve(dir) {
-  return path.join(__dirname, '..', dir)
-}
+const isDev = process.env.npm_lifecycle_event=='dev' ? true : false
+let options = isDev ? require('./config/dev.js') : require('./config/pro.js');
 
-module.exports = (options = {}) => ({
+module.exports = () => ({
   entry: {
     vendor: ['vue','element-ui'],
     index: './src/main.js'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: options.dev ? '[name].js' : '[name].js?[chunkhash]',
-    chunkFilename: '[id].js?[chunkhash]',
-    publicPath: options.dev ? '/assets/' : publicPath
+    filename: isDev ? '[name].js' : 'js/[name].js?[chunkhash]',
+    chunkFilename: 'js/[id].js?[chunkhash]',
   },
   module: {
     rules: [{
@@ -42,7 +40,8 @@ module.exports = (options = {}) => ({
         use: [{
           loader: 'url-loader',
           options: {
-            limit: 10000
+            limit: 10000,
+            name: path.posix.join('assets', 'image/[name].[hash:7].[ext]')
           }
         }]
       }
@@ -50,43 +49,37 @@ module.exports = (options = {}) => ({
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
-      names: ['vendor', 'manifest']
+        names: ['vendor', 'manifest']
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    })
+        template: 'src/index.html'
+    }),
+    new webpack.DefinePlugin({//运行时变量
+      '_BASE_URL':JSON.stringify(options.apiBaseUrl),
+      '_MOCK':false,//模拟数据
+  })
   ],
   resolve: {
     extensions: ['.js', '.vue', '.json'],
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
-      '@': resolve('src'),
-      'src': path.resolve(__dirname, '../src'),
-      'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components'),
-      'views': path.resolve(__dirname, '../src/views'),
-      'styles': path.resolve(__dirname, '../src/styles'),
-      'api': path.resolve(__dirname, '../src/api'),
-      'utils': path.resolve(__dirname, '../src/utils'),
-      'store': path.resolve(__dirname, '../src/store'),
-      'router': path.resolve(__dirname, '../src/router'),
-      'mock': path.resolve(__dirname, '../src/mock'),
-      'vendor': path.resolve(__dirname, '../src/vendor'),
-      'static': path.resolve(__dirname, '../static')
+      '~': path.resolve(__dirname, 'src'),
+      'assets': path.resolve('src', 'assets'),
+      'components': path.resolve('src', 'components'),
+      'views': path.resolve('src', 'views'),
+      'styles': path.resolve('src', 'styles'),
+      'api': path.resolve('src', 'api'),
+      'utils': path.resolve('src', 'utils'),
+      'store': path.resolve('src', 'store'),
+      'router': path.resolve('src', 'router'),
+      'mock': path.resolve('src', 'mock'),
+      'static': path.resolve('src', 'static')
     }
   },
   devServer: {
     host: '127.0.0.1',
     port: 8010,
-    proxy: {
-      '/api': {
-          target: 'http://192.168.10.239:29088',
-          changeOrigin: true,
-          pathRewrite: {
-              '^/api': ''
-          }
-      }
-  },
+    proxy: options.proxy,
     historyApiFallback: {
       index: url.parse(options.dev ? '/assets/' : publicPath).pathname
     }

@@ -58,7 +58,7 @@ export default {
 </script>
 
 <style lang="less" >
-@import '../../styles/var.less';
+@import '~styles/var.less';
 .login {
   background: @main-color;
   display: flex;
@@ -68,7 +68,7 @@ export default {
     width: 300px;
     padding: 50px 30px;
     height: 200px;
-    background: url('../../assets/images/login_bg.png') top repeat-x;
+    background: url('~assets/images/login_bg.png') top repeat-x;
     .el-button {
       display: block;
       width: 100%;

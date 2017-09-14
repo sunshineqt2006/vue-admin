@@ -34,9 +34,9 @@ export default {
 </script>
 
 <style lang="less" scoped>
-@import '../../styles/var.less';
+@import '~styles/var.less';
 .top{
-  .parent-menus{background:url('../../assets/images/parent_menus_bg.jpg') no-repeat @default-color;height: 64px;display: flex;justify-content: space-between;color: #fff;align-items: center;padding: 0 10px;
+  .parent-menus{background:url('~assets/images/parent_menus_bg.jpg') no-repeat @default-color;height: 64px;display: flex;justify-content: space-between;color: #fff;align-items: center;padding: 0 10px;
     .today{
       h3{display: inline-block;font-family: "微软雅黑";}
     }  

@@ -1,10 +1,11 @@
 import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '../store'
+let BASE_URL = _BASE_URL ? _BASE_URL : '';
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://precsm.zmaxfilm.com/api/', // api的base_url
+  baseURL: _BASE_URL, // api的base_url
   timeout: 5000,                  // 请求超时时间
   headers: {
     'content-type': 'application/x-www-form-urlencoded',
@@ -14,10 +15,8 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(config => {
- // config.headers.uuId = '11111111111111111111111111'
   if (store.getters.token) {
     console.log('store.getters.uuid',store.getters.userInfo.uuid)
-  //  config.headers['uuid'] = store.getters.userInfo.uuid 
   }
   return config
 }, error => {
